@@ -4,10 +4,7 @@ import com.museum.chatbot.dto.MessageRequest;
 import com.museum.chatbot.dto.MessageResponse;
 import com.museum.chatbot.services.FaqService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/chat")
@@ -20,6 +17,7 @@ public class FaqController {
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<MessageResponse> answerQuestion(@RequestBody MessageRequest message){
         String answer = service.getAnswers(message.message());
         MessageResponse response = new MessageResponse(answer);
